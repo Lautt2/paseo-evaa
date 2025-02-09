@@ -79,6 +79,17 @@
             border: none;
             cursor: pointer;
         }
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .filters select {
+            padding: 10px;
+            font-size: 16px;
+        }
         .product-list {
             display: flex;
             flex-wrap: wrap;
@@ -116,27 +127,70 @@
     </div>
     <div class="container">
         <h2 id="sobre">Busca tu producto</h2>
+        
+        <!-- Filtros -->
+        <div class="filters">
+            <select id="categoria">
+                <option value="">Categoría</option>
+                <option value="adulto">Adulto</option>
+                <option value="niño">Niño</option>
+                <option value="hombre">Hombre</option>
+                <option value="mujer">Mujer</option>
+                <option value="deporte">Deporte</option>
+                <option value="de-calle">De Calle</option>
+                <option value="tracking">Tracking</option>
+                <option value="ojotas">Ojotas</option>
+            </select>
+            <select id="talle">
+                <option value="">Talle</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="S">S</option>
+                <option value="42">42</option>
+            </select>
+            <select id="marca">
+                <option value="">Marca</option>
+                <option value="Nike">Nike</option>
+                <option value="Adidas">Adidas</option>
+                <option value="Puma">Puma</option>
+            </select>
+        </div>
+
+        <!-- Caja de búsqueda -->
         <div class="search-box">
             <input type="text" id="search" placeholder="Buscar productos...">
             <button onclick="buscarProductos()">Buscar</button>
         </div>
+
+        <!-- Resultados -->
         <div class="product-list" id="product-list"></div>
     </div>
+
     <footer>
         &copy; 2025 Paseo de Compras Grand Bourg - Todos los derechos reservados
     </footer>
     
     <script>
         const productos = [
-            { nombre: "Buzo Nike Azul", talle: "M", precio: 15000, puesto: "Puesto 5" },
-            { nombre: "Buzo Nike Azul", talle: "L", precio: 15500, puesto: "Puesto 12" },
-            { nombre: "Buzo Adidas Rojo", talle: "S", precio: 14000, puesto: "Puesto 8" },
-            { nombre: "Zapatillas Puma", talle: "42", precio: 25000, puesto: "Puesto 15" }
+            { nombre: "Buzo Nike Azul", talle: "M", precio: 15000, puesto: "Puesto 5", categoria: "adulto", marca: "Nike" },
+            { nombre: "Buzo Nike Azul", talle: "L", precio: 15500, puesto: "Puesto 12", categoria: "adulto", marca: "Nike" },
+            { nombre: "Buzo Adidas Rojo", talle: "S", precio: 14000, puesto: "Puesto 8", categoria: "adulto", marca: "Adidas" },
+            { nombre: "Zapatillas Puma", talle: "42", precio: 25000, puesto: "Puesto 15", categoria: "hombre", marca: "Puma" },
+            { nombre: "Ojotas Adidas", talle: "L", precio: 8000, puesto: "Puesto 4", categoria: "de-calle", marca: "Adidas" }
         ];
 
         function buscarProductos() {
             const query = document.getElementById("search").value.toLowerCase();
-            const resultados = productos.filter(producto => producto.nombre.toLowerCase().includes(query));
+            const categoria = document.getElementById("categoria").value;
+            const talle = document.getElementById("talle").value;
+            const marca = document.getElementById("marca").value;
+
+            const resultados = productos.filter(producto => {
+                return (producto.nombre.toLowerCase().includes(query)) &&
+                       (categoria ? producto.categoria.toLowerCase() === categoria : true) &&
+                       (talle ? producto.talle === talle : true) &&
+                       (marca ? producto.marca.toLowerCase() === marca.toLowerCase() : true);
+            });
             
             const lista = document.getElementById("product-list");
             lista.innerHTML = "";
