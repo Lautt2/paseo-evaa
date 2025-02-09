@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paseo de Compras Grand Bourg</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #333;
+        }
+        header {
+            background-color: #000;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .hero {
+            background-image: url('https://source.unsplash.com/1600x900/?shopping,mall');
+            background-size: cover;
+            background-position: center;
+            height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            font-size: 36px;
+            font-weight: bold;
+        }
+        .container {
+            padding: 40px;
+            text-align: center;
+        }
+        .button {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #000;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .search-box {
+            margin: 20px auto;
+            max-width: 500px;
+            display: flex;
+            gap: 10px;
+        }
+        .search-box input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+        }
+        .search-box button {
+            padding: 10px 15px;
+            background-color: #000;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .product-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .product {
+            border: 1px solid #ddd;
+            padding: 15px;
+            width: 250px;
+            text-align: center;
+            background-color: white;
+        }
+        footer {
+            background-color: #000;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Paseo Grand Bourg</div>
+        <nav>
+            <a href="#sobre">Sobre Nosotros</a>
+            <a href="#tiendas">Tiendas</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
+    </header>
+    <div class="hero">
+        ¡Descubre lo mejor del shopping en Grand Bourg!
+    </div>
+    <div class="container">
+        <h2 id="sobre">Busca tu producto</h2>
+        <div class="search-box">
+            <input type="text" id="search" placeholder="Buscar productos...">
+            <button onclick="buscarProductos()">Buscar</button>
+        </div>
+        <div class="product-list" id="product-list"></div>
+    </div>
+    <footer>
+        &copy; 2025 Paseo de Compras Grand Bourg - Todos los derechos reservados
+    </footer>
+    
+    <script>
+        const productos = [
+            { nombre: "Buzo Nike Azul", talle: "M", precio: 15000, puesto: "Puesto 5" },
+            { nombre: "Buzo Nike Azul", talle: "L", precio: 15500, puesto: "Puesto 12" },
+            { nombre: "Buzo Adidas Rojo", talle: "S", precio: 14000, puesto: "Puesto 8" },
+            { nombre: "Zapatillas Puma", talle: "42", precio: 25000, puesto: "Puesto 15" }
+        ];
+
+        function buscarProductos() {
+            const query = document.getElementById("search").value.toLowerCase();
+            const resultados = productos.filter(producto => producto.nombre.toLowerCase().includes(query));
+            
+            const lista = document.getElementById("product-list");
+            lista.innerHTML = "";
+
+            if (resultados.length === 0) {
+                lista.innerHTML = "<p>No se encontraron productos.</p>";
+                return;
+            }
+
+            resultados.forEach(producto => {
+                const item = document.createElement("div");
+                item.classList.add("product");
+                item.innerHTML = `
+                    <h3>${producto.nombre}</h3>
+                    <p>Talle: ${producto.talle}</p>
+                    <p>Precio: $${producto.precio}</p>
+                    <p><strong>${producto.puesto}</strong></p>
+                `;
+                lista.appendChild(item);
+            });
+        }
+    </script>
+</body>
+</html>
