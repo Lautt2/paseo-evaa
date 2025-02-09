@@ -19,7 +19,6 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: relative;
         }
         .logo {
             font-size: 24px;
@@ -36,15 +35,19 @@
             font-weight: bold;
             position: relative;
         }
-        nav .submenu {
+        nav a:hover {
+            background-color: #444;
+        }
+        .submenu {
             display: none;
             position: absolute;
             background-color: #333;
             padding: 10px;
             border-radius: 5px;
-            top: 40px;
+            top: 30px;
             left: 0;
             min-width: 180px;
+            z-index: 10;
         }
         nav a:hover .submenu {
             display: block;
@@ -142,6 +145,7 @@
     <header>
         <div class="logo">Paseo Grand Bourg</div>
         <nav>
+            <!-- HOMBRE -->
             <a href="#">Hombre
                 <div class="submenu">
                     <a href="#">Verano</a>
@@ -150,6 +154,7 @@
                     <a href="#">Accesorios</a>
                 </div>
             </a>
+            <!-- MUJER -->
             <a href="#">Mujer
                 <div class="submenu">
                     <a href="#">Verano</a>
@@ -158,12 +163,14 @@
                     <a href="#">Accesorios</a>
                 </div>
             </a>
+            <!-- NIÑOS -->
             <a href="#">Niños
                 <div class="submenu">
                     <a href="#">Ropa Infantil</a>
                     <a href="#">Zapatillas</a>
                 </div>
             </a>
+            <!-- ZAPATILLAS -->
             <a href="#">Zapatillas
                 <div class="submenu">
                     <a href="#">De Calle</a>
