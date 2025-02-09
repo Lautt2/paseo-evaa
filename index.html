@@ -34,6 +34,7 @@
             font-size: 18px;
             font-weight: bold;
             position: relative;
+            cursor: pointer;
         }
         nav a:hover {
             background-color: #444;
@@ -48,9 +49,6 @@
             left: 0;
             min-width: 180px;
             z-index: 10;
-        }
-        nav a:hover .submenu {
-            display: block;
         }
         .submenu a {
             display: block;
@@ -146,40 +144,39 @@
         <div class="logo">Paseo Grand Bourg</div>
         <nav>
             <!-- HOMBRE -->
-            <a href="#">Hombre
-                <div class="submenu">
-                    <a href="#">Verano</a>
-                    <a href="#">Invierno</a>
-                    <a href="#">Zapatillas</a>
-                    <a href="#">Accesorios</a>
-                </div>
-            </a>
+            <a onclick="toggleMenu('hombre')">Hombre</a>
+            <div id="hombre" class="submenu">
+                <a href="#">Verano</a>
+                <a href="#">Invierno</a>
+                <a href="#">Zapatillas</a>
+                <a href="#">Accesorios</a>
+            </div>
+
             <!-- MUJER -->
-            <a href="#">Mujer
-                <div class="submenu">
-                    <a href="#">Verano</a>
-                    <a href="#">Invierno</a>
-                    <a href="#">Zapatillas</a>
-                    <a href="#">Accesorios</a>
-                </div>
-            </a>
+            <a onclick="toggleMenu('mujer')">Mujer</a>
+            <div id="mujer" class="submenu">
+                <a href="#">Verano</a>
+                <a href="#">Invierno</a>
+                <a href="#">Zapatillas</a>
+                <a href="#">Accesorios</a>
+            </div>
+
             <!-- NIÑOS -->
-            <a href="#">Niños
-                <div class="submenu">
-                    <a href="#">Ropa Infantil</a>
-                    <a href="#">Zapatillas</a>
-                </div>
-            </a>
+            <a onclick="toggleMenu('ninos')">Niños</a>
+            <div id="ninos" class="submenu">
+                <a href="#">Ropa Infantil</a>
+                <a href="#">Zapatillas</a>
+            </div>
+
             <!-- ZAPATILLAS -->
-            <a href="#">Zapatillas
-                <div class="submenu">
-                    <a href="#">De Calle</a>
-                    <a href="#">Running</a>
-                    <a href="#">Tracking</a>
-                    <a href="#">Ojotas</a>
-                    <a href="#">Ofertas</a>
-                </div>
-            </a>
+            <a onclick="toggleMenu('zapatillas')">Zapatillas</a>
+            <div id="zapatillas" class="submenu">
+                <a href="#">De Calle</a>
+                <a href="#">Running</a>
+                <a href="#">Tracking</a>
+                <a href="#">Ojotas</a>
+                <a href="#">Ofertas</a>
+            </div>
         </nav>
     </header>
     <div class="hero">
@@ -238,6 +235,12 @@
             { nombre: "Zapatillas Puma", talle: "42", precio: 25000, puesto: "Puesto 15", categoria: "hombre", marca: "Puma" },
             { nombre: "Ojotas Adidas", talle: "L", precio: 8000, puesto: "Puesto 4", categoria: "de-calle", marca: "Adidas" }
         ];
+
+        function toggleMenu(categoria) {
+            const submenu = document.getElementById(categoria);
+            // Toggle the visibility of the submenu
+            submenu.style.display = submenu.style.display === "block" ? "none" : "block";
+        }
 
         function buscarProductos() {
             const query = document.getElementById("search").value.toLowerCase();
