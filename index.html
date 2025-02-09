@@ -19,6 +19,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
         }
         .logo {
             font-size: 24px;
@@ -33,6 +34,30 @@
             text-decoration: none;
             font-size: 18px;
             font-weight: bold;
+            position: relative;
+        }
+        nav .submenu {
+            display: none;
+            position: absolute;
+            background-color: #333;
+            padding: 10px;
+            border-radius: 5px;
+            top: 40px;
+            left: 0;
+            min-width: 180px;
+        }
+        nav a:hover .submenu {
+            display: block;
+        }
+        .submenu a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 5px 10px;
+            font-size: 16px;
+        }
+        .submenu a:hover {
+            background-color: #555;
         }
         .hero {
             background-image: url('https://source.unsplash.com/1600x900/?shopping,mall');
@@ -117,9 +142,37 @@
     <header>
         <div class="logo">Paseo Grand Bourg</div>
         <nav>
-            <a href="#sobre">Sobre Nosotros</a>
-            <a href="#tiendas">Tiendas</a>
-            <a href="#contacto">Contacto</a>
+            <a href="#">Hombre
+                <div class="submenu">
+                    <a href="#">Verano</a>
+                    <a href="#">Invierno</a>
+                    <a href="#">Zapatillas</a>
+                    <a href="#">Accesorios</a>
+                </div>
+            </a>
+            <a href="#">Mujer
+                <div class="submenu">
+                    <a href="#">Verano</a>
+                    <a href="#">Invierno</a>
+                    <a href="#">Zapatillas</a>
+                    <a href="#">Accesorios</a>
+                </div>
+            </a>
+            <a href="#">Niños
+                <div class="submenu">
+                    <a href="#">Ropa Infantil</a>
+                    <a href="#">Zapatillas</a>
+                </div>
+            </a>
+            <a href="#">Zapatillas
+                <div class="submenu">
+                    <a href="#">De Calle</a>
+                    <a href="#">Running</a>
+                    <a href="#">Traking</a>
+                    <a href="#">Ojotas</a>
+                    <a href="#">Ofertas</a>
+                </div>
+            </a>
         </nav>
     </header>
     <div class="hero">
@@ -215,3 +268,4 @@
     </script>
 </body>
 </html>
+
